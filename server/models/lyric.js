@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const LyricSchema = new Schema({
   song: {
@@ -8,16 +8,16 @@ const LyricSchema = new Schema({
   },
   likes: { type: Number, default: 0 },
   content: { type: String }
-});
+})
 
-LyricSchema.statics.like = function(id) {
-  const Lyric = mongoose.model('lyric');
+LyricSchema.statics.like = function (id) {
+  const Lyric = mongoose.model('lyric')
 
   return Lyric.findById(id)
     .then(lyric => {
-      ++lyric.likes;
-      return lyric.save();
+      ++lyric.likes
+      return lyric.save()
     })
 }
 
-mongoose.model('lyric', LyricSchema);
+mongoose.model('lyric', LyricSchema)
