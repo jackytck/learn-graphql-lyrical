@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
+import { Link, hashHistory } from 'react-router'
 
 class SongCreate extends Component {
   static propTypes = {
@@ -18,12 +19,13 @@ class SongCreate extends Component {
       variables: {
         title: this.state.title
       }
-    })
+    }).then(() => hashHistory.push('/'))
   }
 
   render () {
     return (
       <div>
+        <Link to='/'>Back</Link>
         <h3>Create a New Song</h3>
         <form onSubmit={this._onSubmit}>
           <label>Song Title:</label>
@@ -31,7 +33,6 @@ class SongCreate extends Component {
             onChange={event => this.setState({ title: event.target.value })}
             value={this.state.title}
           />
-          <button type='submit'>Create</button>
         </form>
       </div>
     )
