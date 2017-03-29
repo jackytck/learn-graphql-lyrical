@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router'
 import fetchSong from '../queries/fetchSongDetail'
+import LyricCreate from './LyricCreate'
 
 class SongDetail extends Component {
   static propTypes = {
@@ -23,6 +24,7 @@ class SongDetail extends Component {
       <div>
         <Link to='/'>Back</Link>
         <h3>{song.title}</h3>
+        <LyricCreate />
       </div>
     )
   }

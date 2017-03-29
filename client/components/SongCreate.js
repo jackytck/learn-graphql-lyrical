@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Link, hashHistory } from 'react-router'
 import query from '../queries/fetchSongs'
