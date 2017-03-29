@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import { graphql } from 'react-apollo'
+import mutation from '../queries/addLyricToSong'
 
 class LyricCreate extends Component {
   static propTypes = {
-    // data: PropTypes.shape({
-    //   loading: PropTypes.boolean,
-    //   song: PropTypes.object
-    // })
+    mutate: PropTypes.func,
+    songId: PropTypes.string
   }
 
   state = {
@@ -16,7 +16,13 @@ class LyricCreate extends Component {
 
   onSubmit (event) {
     event.preventDefault()
-    console.log(this.state.content)
+
+    this.props.mutate({
+      variables: {
+        content: this.state.content,
+        songId: this.props.songId
+      }
+    }).then(() => this.setState({ content: '' }))
   }
 
   render () {
@@ -32,4 +38,4 @@ class LyricCreate extends Component {
   }
 }
 
-export default LyricCreate
+export default graphql(mutation)(LyricCreate)

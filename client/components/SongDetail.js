@@ -9,6 +9,9 @@ class SongDetail extends Component {
     data: PropTypes.shape({
       loading: PropTypes.boolean,
       song: PropTypes.object
+    }),
+    params: PropTypes.shape({
+      id: PropTypes.string
     })
   }
 
@@ -24,7 +27,7 @@ class SongDetail extends Component {
       <div>
         <Link to='/'>Back</Link>
         <h3>{song.title}</h3>
-        <LyricCreate />
+        <LyricCreate songId={this.props.params.id} />
       </div>
     )
   }
