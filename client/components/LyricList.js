@@ -1,37 +1,27 @@
 import React, { Component, PropTypes } from 'react'
-// import { graphql } from 'react-apollo'
 
 class LyricList extends Component {
   static propTypes = {
-    mutate: PropTypes.func,
-    songId: PropTypes.string
+    lyrics: PropTypes.array
   }
 
-  state = {
-    content: ''
+  renderLyrics () {
+    return this.props.lyrics.map(({ id, content }) => {
+      return (
+        <li key={id} className='collection-item'>
+          {content}
+        </li>
+      )
+    })
   }
-
-  // _onSubmit = this.onSubmit.bind(this)
-  //
-  // onSubmit (event) {
-  //   event.preventDefault()
-  //
-  //   this.props.mutate({
-  //     variables: {
-  //       content: this.state.content,
-  //       songId: this.props.songId
-  //     }
-  //   }).then(() => this.setState({ content: '' }))
-  // }
 
   render () {
     return (
-      <ul>
-        LyricList
+      <ul className='collection'>
+        {this.renderLyrics()}
       </ul>
     )
   }
 }
 
-// export default graphql(mutation)(LyricList)
 export default LyricList
