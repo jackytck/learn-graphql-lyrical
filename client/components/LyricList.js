@@ -8,9 +8,18 @@ class LyricList extends Component {
     lyrics: PropTypes.array
   }
 
-  onLike (id) {
-    console.log(id)
-    this.props.mutate({ variables: { id } })
+  onLike (id, likes) {
+    this.props.mutate({
+      variables: { id },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric: {
+          id,
+          __typename: 'LyricType',
+          likes: likes + 1
+        }
+      }
+    })
   }
 
   renderLyrics () {
@@ -21,7 +30,7 @@ class LyricList extends Component {
           <div className='vote-box'>
             <i
               className='material-icons'
-              onClick={() => this.onLike(id)}
+              onClick={() => this.onLike(id, likes)}
             >
               thumb_up
             </i>
