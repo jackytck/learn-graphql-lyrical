@@ -5,6 +5,11 @@ import query from '../queries/fetchSongs'
 import mutation from '../queries/deleteSong'
 
 class SongList extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+    mutate: PropTypes.func
+  }
+
   onSongDelete (id) {
     console.log(id)
     this.props.mutate({ variables: { id } })
@@ -50,11 +55,6 @@ class SongList extends Component {
       </div>
     )
   }
-}
-
-SongList.propTypes = {
-  data: PropTypes.object,
-  mutate: PropTypes.func
 }
 
 export default graphql(mutation)(
